@@ -27,6 +27,14 @@ const ARTIFACT_TYPES: { value: ArtifactType; label: string }[] = [
   { value: "open", label: "Open — student choice within parameters" },
 ];
 
+const LEVER_PHASES = [
+  { letter: "L", name: "Leverage", desc: "Identify high-impact variables", color: "text-violet-600", bg: "bg-violet-50" },
+  { letter: "E", name: "Environment", desc: "Context shapes behavior", color: "text-sky-600", bg: "bg-sky-50" },
+  { letter: "V", name: "Velocity", desc: "Short feedback loops", color: "text-emerald-600", bg: "bg-emerald-50" },
+  { letter: "E", name: "Execution", desc: "Output as learning tech", color: "text-amber-600", bg: "bg-amber-50" },
+  { letter: "R", name: "Repetition", desc: "Learning compounds", color: "text-rose-600", bg: "bg-rose-50" },
+];
+
 export default function TeacherInputForm({ onSubmit, isGenerating }: Props) {
   const [input, setInput] = useState<TeacherInput>({
     gradeBand: "6-8",
@@ -79,10 +87,20 @@ export default function TeacherInputForm({ onSubmit, isGenerating }: Props) {
 
   return (
     <div className="w-full max-w-2xl mx-auto">
-      {/* Header */}
+      {/* Demo Mode Banner */}
+      <div className="mb-6 bg-amber-50 border border-amber-200 rounded-xl px-4 py-3 text-center" role="alert">
+        <p className="text-sm text-amber-800 font-medium">
+          Frontend Demo Mode
+        </p>
+        <p className="text-xs text-amber-600 mt-0.5">
+          This is a UI preview. Lesson generation requires a backend server with API keys configured.
+        </p>
+      </div>
+
+      {/* Header — proper h1 heading */}
       <div className="mb-8 text-center">
         <div className="inline-flex items-center gap-2 mb-3">
-          <span className="text-3xl font-black tracking-tight text-slate-900">LEVER</span>
+          <h1 className="text-3xl font-black tracking-tight text-slate-900">LEVER</h1>
           <span className="text-xs font-semibold bg-slate-900 text-white px-2 py-0.5 rounded-full uppercase tracking-widest">
             Lesson Generator
           </span>
@@ -90,6 +108,22 @@ export default function TeacherInputForm({ onSubmit, isGenerating }: Props) {
         <p className="text-slate-500 text-sm max-w-md mx-auto">
           One prompt in → complete teacher plan + student materials packet. Powered by the LEVER learning framework.
         </p>
+      </div>
+
+      {/* LEVER Framework Explainer */}
+      <div className="mb-8 bg-white border border-slate-100 rounded-2xl p-5">
+        <h2 className="text-xs font-semibold text-slate-400 uppercase tracking-widest mb-3">
+          The LEVER Framework
+        </h2>
+        <div className="grid grid-cols-5 gap-2">
+          {LEVER_PHASES.map((phase, i) => (
+            <div key={i} className={`${phase.bg} rounded-lg p-2.5 text-center`}>
+              <span className={`font-black text-lg ${phase.color}`}>{phase.letter}</span>
+              <p className="text-xs font-semibold text-slate-700 mt-0.5">{phase.name}</p>
+              <p className="text-xs text-slate-400 mt-0.5 leading-tight hidden sm:block">{phase.desc}</p>
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* Template bar */}
@@ -128,11 +162,12 @@ export default function TeacherInputForm({ onSubmit, isGenerating }: Props) {
       <form onSubmit={handleSubmit} className="space-y-5">
         {/* Topic */}
         <div>
-          <label className="block text-sm font-semibold text-slate-700 mb-1.5">
+          <label htmlFor="topic" className="block text-sm font-semibold text-slate-700 mb-1.5">
             Topic or Standard
           </label>
           <textarea
-            className="w-full border border-slate-200 rounded-xl px-4 py-3 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-slate-900 focus:border-transparent transition-all bg-white placeholder:text-slate-300"
+            id="topic"
+            className="w-full border border-slate-200 rounded-xl px-4 py-3 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-slate-900 focus:border-transparent transition-all bg-white placeholder:text-slate-400"
             rows={2}
             placeholder="e.g. 'Systems of equations' · 'The Civil Rights Movement' · 'Photosynthesis and cellular respiration' · 'CCSS.ELA-LITERACY.RI.8.8'"
             value={input.topic}
@@ -143,25 +178,27 @@ export default function TeacherInputForm({ onSubmit, isGenerating }: Props) {
 
         {/* Discipline */}
         <div>
-          <label className="block text-sm font-semibold text-slate-700 mb-1.5">
+          <label htmlFor="discipline" className="block text-sm font-semibold text-slate-700 mb-1.5">
             Discipline / Subject Area
           </label>
           <input
+            id="discipline"
             type="text"
-            className="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-slate-900 focus:border-transparent transition-all bg-white placeholder:text-slate-300"
+            className="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-slate-900 focus:border-transparent transition-all bg-white placeholder:text-slate-400"
             placeholder="e.g. Math, ELA, Science, Social Studies, Art, Interdisciplinary..."
             value={input.discipline}
             onChange={(e) => handleChange("discipline", e.target.value)}
           />
         </div>
 
-        {/* Grade Band + Timeframe row */}
-        <div className="grid grid-cols-2 gap-4">
+        {/* Grade Band + Timeframe row — responsive: stacks on mobile */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-semibold text-slate-700 mb-1.5">
+            <label htmlFor="gradeBand" className="block text-sm font-semibold text-slate-700 mb-1.5">
               Grade Band
             </label>
             <select
+              id="gradeBand"
               className="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-slate-900 bg-white"
               value={input.gradeBand}
               onChange={(e) => handleChange("gradeBand", e.target.value as GradeBand)}
@@ -172,10 +209,11 @@ export default function TeacherInputForm({ onSubmit, isGenerating }: Props) {
             </select>
           </div>
           <div>
-            <label className="block text-sm font-semibold text-slate-700 mb-1.5">
+            <label htmlFor="timeframe" className="block text-sm font-semibold text-slate-700 mb-1.5">
               Timeframe
             </label>
             <select
+              id="timeframe"
               className="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-slate-900 bg-white"
               value={input.timeframe}
               onChange={(e) => handleChange("timeframe", e.target.value as Timeframe)}
@@ -187,11 +225,11 @@ export default function TeacherInputForm({ onSubmit, isGenerating }: Props) {
           </div>
         </div>
 
-        {/* Readiness */}
-        <div>
-          <label className="block text-sm font-semibold text-slate-700 mb-1.5">
+        {/* Readiness — proper fieldset/legend */}
+        <fieldset>
+          <legend className="block text-sm font-semibold text-slate-700 mb-1.5">
             Student Readiness
-          </label>
+          </legend>
           <div className="space-y-2">
             {READINESS_LEVELS.map(({ value, label }) => (
               <label
@@ -214,16 +252,17 @@ export default function TeacherInputForm({ onSubmit, isGenerating }: Props) {
               </label>
             ))}
           </div>
-        </div>
+        </fieldset>
 
         {/* Constraints */}
         <div>
-          <label className="block text-sm font-semibold text-slate-700 mb-1.5">
+          <label htmlFor="constraints" className="block text-sm font-semibold text-slate-700 mb-1.5">
             Classroom Constraints
           </label>
           <input
+            id="constraints"
             type="text"
-            className="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-slate-900 transition-all bg-white placeholder:text-slate-300"
+            className="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-slate-900 transition-all bg-white placeholder:text-slate-400"
             placeholder="e.g. 'No devices' · '45-min periods' · 'ELL students' · 'Limited materials'"
             value={input.constraints}
             onChange={(e) => handleChange("constraints", e.target.value)}
@@ -232,10 +271,11 @@ export default function TeacherInputForm({ onSubmit, isGenerating }: Props) {
 
         {/* Artifact Type */}
         <div>
-          <label className="block text-sm font-semibold text-slate-700 mb-1.5">
+          <label htmlFor="artifactType" className="block text-sm font-semibold text-slate-700 mb-1.5">
             Desired Artifact
           </label>
           <select
+            id="artifactType"
             className="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-slate-900 bg-white"
             value={input.artifactType}
             onChange={(e) => handleChange("artifactType", e.target.value as ArtifactType)}
@@ -254,7 +294,7 @@ export default function TeacherInputForm({ onSubmit, isGenerating }: Props) {
         >
           {isGenerating ? (
             <>
-              <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24" fill="none">
+              <svg className="animate-spin h-4 w-4" aria-hidden="true" viewBox="0 0 24 24" fill="none">
                 <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                 <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
               </svg>
@@ -263,7 +303,7 @@ export default function TeacherInputForm({ onSubmit, isGenerating }: Props) {
           ) : (
             <>
               <span>Generate Lesson + Materials</span>
-              <span className="opacity-60">→</span>
+              <span className="opacity-60" aria-hidden="true">→</span>
             </>
           )}
         </button>

@@ -162,6 +162,7 @@ export default function FeedbackBar({ output, onSaveTemplate }: Props) {
               onClick={() => handleFeedback("up")}
               className="text-lg hover:scale-110 transition-transform"
               title="This worked well"
+              aria-label="Thumbs up — this worked well"
             >
               👍
             </button>
@@ -169,6 +170,7 @@ export default function FeedbackBar({ output, onSaveTemplate }: Props) {
               onClick={() => handleFeedback("down")}
               className="text-lg hover:scale-110 transition-transform"
               title="This needs adjustment"
+              aria-label="Thumbs down — this needs adjustment"
             >
               👎
             </button>
