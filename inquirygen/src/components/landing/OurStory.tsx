@@ -16,9 +16,9 @@ const credentials = [
   },
   {
     icon: Globe,
-    stat: "6",
-    label: "Standards Frameworks",
-    description: "IB, UK National Curriculum, Australian, NGSS, Common Core, and state standards",
+    stat: "50+",
+    label: "Country Frameworks",
+    description: "From IB and NGSS to Kenyan CBC, Finnish OPS, Singapore MOE, and dozens more worldwide",
   },
   {
     icon: Heart,

@@ -15,7 +15,7 @@ const previewCards = [
     icon: FileText,
     title: "Standards Alignment Map",
     description:
-      "Cross-walked to your selected standards framework with evidence-based pedagogical connections",
+      "Cross-walked to your country\u2019s national curriculum framework with evidence-based pedagogical connections",
   },
   {
     icon: Presentation,

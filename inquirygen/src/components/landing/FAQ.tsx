@@ -25,7 +25,7 @@ const faqs = [
   {
     question: "What standards does it support?",
     answer:
-      "InquiryGen supports IB (PYP, MYP, DP), UK National Curriculum, Australian Curriculum, NGSS, Common Core, and individual U.S. state standards. Our global standards engine ensures alignment no matter where you teach.",
+      "InquiryGen supports 50+ national curriculum frameworks worldwide — including IB (PYP, MYP, DP), UK National Curriculum, Australian Curriculum (ACARA), Finnish OPS, Singapore MOE, Kenyan CBC, South African CAPS, NGSS, Common Core, and individual U.S. state standards. Select your country during generation and InquiryGen aligns to your national framework automatically.",
   },
   {
     question: "Can I customize the outputs?",
