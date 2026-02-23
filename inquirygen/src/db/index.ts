@@ -11,13 +11,19 @@ function createDb() {
   return drizzle(sql, { schema });
 }
 
-let _db: ReturnType<typeof createDb> | null = null;
+type Db = ReturnType<typeof createDb>;
 
-export const db = new Proxy({} as ReturnType<typeof createDb>, {
+let _db: Db | null = null;
+
+function getDb(): Db {
+  if (!_db) {
+    _db = createDb();
+  }
+  return _db;
+}
+
+export const db = new Proxy({} as Db, {
   get(_target, prop) {
-    if (!_db) {
-      _db = createDb();
-    }
-    return (_db as Record<string | symbol, unknown>)[prop];
+    return (getDb() as unknown as Record<string | symbol, unknown>)[prop];
   },
 });
