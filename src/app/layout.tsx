@@ -1,10 +1,23 @@
 import type { Metadata } from "next";
+import { DM_Sans, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 
+const dmSans = DM_Sans({
+  variable: "--font-body",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+
+const instrumentSerif = Instrument_Serif({
+  variable: "--font-heading",
+  subsets: ["latin"],
+  weight: "400",
+});
+
 export const metadata: Metadata = {
-  title: "LEVER Lesson & Materials Generator",
+  title: "InquiryGen - AI-Powered Lesson Generator",
   description:
-    "Teacher-only planning tool. One prompt → complete LEVER-driven instructional plan + student materials packet.",
+    "Generate complete inquiry-based learning units aligned to your standards. Powered by AI.",
 };
 
 export default function RootLayout({
@@ -14,7 +27,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="antialiased">{children}</body>
+      <body className={`${dmSans.variable} ${instrumentSerif.variable} font-sans antialiased`}>
+        {children}
+      </body>
     </html>
   );
 }
