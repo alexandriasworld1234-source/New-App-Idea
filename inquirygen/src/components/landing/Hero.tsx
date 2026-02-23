@@ -52,15 +52,15 @@ export function Hero() {
       {/* Floating glow orbs with parallax */}
       <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
         <motion.div
-          className="float-orb absolute top-1/4 left-1/4 h-[400px] w-[400px] rounded-full bg-[#10b981]/15 blur-[120px]"
+          className="float-orb absolute top-1/4 left-1/4 h-[400px] w-[400px] rounded-full bg-[#10b981]/8 blur-[120px]"
           style={{ y: orb1Y }}
         />
         <motion.div
-          className="float-orb-slow absolute right-1/4 bottom-1/4 h-[350px] w-[350px] rounded-full bg-primary/10 blur-[100px]"
+          className="float-orb-slow absolute right-1/4 bottom-1/4 h-[350px] w-[350px] rounded-full bg-primary/6 blur-[100px]"
           style={{ y: orb2Y }}
         />
         <motion.div
-          className="float-orb absolute bottom-1/3 left-1/2 h-[250px] w-[250px] rounded-full bg-[#34d399]/8 blur-[80px]"
+          className="float-orb absolute bottom-1/3 left-1/2 h-[250px] w-[250px] rounded-full bg-[#34d399]/5 blur-[80px]"
           style={{ y: orb3Y }}
         />
       </div>
@@ -78,17 +78,17 @@ export function Hero() {
         </motion.div>
 
         {/* Headline */}
-        <div className="font-display text-5xl tracking-tight text-white sm:text-6xl lg:text-7xl">
+        <div className="font-display text-5xl tracking-tight text-[#0f172a] sm:text-6xl lg:text-7xl">
           <TextReveal
             as="span"
-            className="font-display text-5xl tracking-tight text-white sm:text-6xl lg:text-7xl"
+            className="font-display text-5xl tracking-tight text-[#0f172a] sm:text-6xl lg:text-7xl"
             staggerDelay={0.08}
           >
             Stop Searching.
           </TextReveal>{" "}
           <TextReveal
             as="span"
-            className="glow-accent-text font-display bg-gradient-to-r from-[#10b981] to-[#34d399] bg-clip-text text-5xl tracking-tight text-transparent sm:text-6xl lg:text-7xl"
+            className="font-display bg-gradient-to-r from-[#10b981] to-[#34d399] bg-clip-text text-5xl tracking-tight text-transparent sm:text-6xl lg:text-7xl"
             staggerDelay={0.08}
           >
             Start Teaching.
@@ -100,7 +100,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.8, ease }}
-          className="mx-auto mt-6 max-w-2xl text-lg text-white/60 sm:text-xl"
+          className="mx-auto mt-6 max-w-2xl text-lg text-[#475569] sm:text-xl"
         >
           Generate complete, standards-aligned inquiry units &mdash; teacher guides,
           student materials, and presentations &mdash; in minutes, not hours.
@@ -132,7 +132,7 @@ export function Hero() {
                   href="/sign-up"
                   className="btn-glow inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#10b981] to-[#059669] px-8 py-4 text-base font-semibold text-white shadow-[0_0_25px_rgba(16,185,129,0.25)] transition-all"
                 >
-                  Try It Now &mdash; It&apos;s Free
+                  Get Started
                   <ArrowRight className="h-5 w-5" />
                 </Link>
               </motion.div>
@@ -140,7 +140,7 @@ export function Hero() {
             <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.98 }}>
               <Link
                 href="/sign-in"
-                className="inline-flex items-center gap-2 rounded-xl border border-white/20 px-8 py-4 text-base font-semibold text-white/80 transition-all hover:border-[#10b981]/40 hover:bg-white/5 hover:text-white hover:shadow-[0_0_20px_rgba(16,185,129,0.1)]"
+                className="inline-flex items-center gap-2 rounded-xl border border-[#0f172a]/15 px-8 py-4 text-base font-semibold text-[#475569] transition-all hover:border-[#10b981]/40 hover:bg-[#10b981]/5 hover:text-[#0f172a] hover:shadow-[0_0_20px_rgba(16,185,129,0.1)]"
               >
                 Log In
               </Link>
@@ -161,20 +161,11 @@ export function Hero() {
           </SignedIn>
         </motion.div>
 
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 1.4 }}
-          className="mt-3 text-sm text-white/40"
-        >
-          2 free generations. No credit card required.
-        </motion.p>
-
         {/* Social proof stats bar */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 1.6, ease }}
+          transition={{ duration: 0.6, delay: 1.4, ease }}
         >
           <SocialProof />
         </motion.div>

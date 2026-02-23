@@ -56,7 +56,7 @@ export function SocialProof() {
             initial={{ opacity: 0, y: 10 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.4, delay: i * 0.1 }}
-            className={`text-center ${i < stats.length - 1 ? "md:border-r md:border-white/10" : ""}`}
+            className={`text-center ${i < stats.length - 1 ? "md:border-r md:border-[#0f172a]/10" : ""}`}
           >
             <AnimatedCounter
               value={stat.value}
@@ -64,7 +64,7 @@ export function SocialProof() {
               decimals={stat.decimals}
               trigger={isInView}
             />
-            <p className="mt-1 text-xs text-white/40">{stat.label}</p>
+            <p className="mt-1 text-xs text-[#475569]">{stat.label}</p>
           </motion.div>
         ))}
       </div>

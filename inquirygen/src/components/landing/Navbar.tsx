@@ -25,7 +25,7 @@ export function Navbar() {
   }, []);
 
   useEffect(() => {
-    const sections = ["features", "pricing", "faq"];
+    const sections = ["features", "story", "pricing", "faq"];
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -47,6 +47,7 @@ export function Navbar() {
 
   const navLinks = [
     { href: "#features", label: "Features", id: "features" },
+    { href: "#story", label: "Our Story", id: "story" },
     { href: "#pricing", label: "Pricing", id: "pricing" },
     { href: "#faq", label: "FAQ", id: "faq" },
   ];
@@ -59,7 +60,7 @@ export function Navbar() {
       <header
         className={`fixed top-0 right-0 left-0 z-50 transition-all duration-500 ${
           scrolled
-            ? "liquid-glass !rounded-none !border-x-0 !border-t-0 shadow-[0_4px_30px_rgba(0,0,0,0.3)]"
+            ? "liquid-glass !rounded-none !border-x-0 !border-t-0 shadow-[0_4px_30px_rgba(0,0,0,0.06)]"
             : "bg-transparent"
         }`}
       >
@@ -76,7 +77,7 @@ export function Navbar() {
             >
               <Sparkles className="h-6 w-6 text-[#10b981]" />
             </motion.div>
-            <span className="font-display text-xl text-white">InquiryGen</span>
+            <span className="font-display text-xl text-[#0f172a]">InquiryGen</span>
           </Link>
 
           {/* Desktop nav */}
@@ -85,8 +86,8 @@ export function Navbar() {
               <a
                 key={link.id}
                 href={link.href}
-                className={`nav-link text-sm transition-colors hover:text-white ${
-                  activeSection === link.id ? "text-white" : "text-white/70"
+                className={`nav-link text-sm transition-colors hover:text-[#0f172a] ${
+                  activeSection === link.id ? "text-[#0f172a]" : "text-[#475569]"
                 }`}
               >
                 {link.label}
@@ -103,7 +104,7 @@ export function Navbar() {
             <SignedOut>
               <Link
                 href="/sign-in"
-                className="nav-link text-sm font-medium text-white/70 transition-colors hover:text-white"
+                className="nav-link text-sm font-medium text-[#475569] transition-colors hover:text-[#0f172a]"
               >
                 Log In
               </Link>
@@ -111,7 +112,7 @@ export function Navbar() {
                 href="/sign-up"
                 className="btn-glow rounded-lg bg-gradient-to-r from-[#10b981] to-[#059669] px-4 py-2 text-sm font-semibold text-white transition-all"
               >
-                Try It Now
+                Get Started
               </Link>
             </SignedOut>
             <SignedIn>
@@ -127,7 +128,7 @@ export function Navbar() {
 
           {/* Mobile hamburger */}
           <button
-            className="text-white md:hidden"
+            className="text-[#0f172a] md:hidden"
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
           >
@@ -142,7 +143,7 @@ export function Navbar() {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
-              className="liquid-glass !rounded-t-none border-t border-white/10 md:hidden"
+              className="liquid-glass !rounded-t-none border-t border-[#0f172a]/10 md:hidden"
             >
               <div className="flex flex-col gap-4 px-4 py-6">
                 {navLinks.map((link) => (
@@ -150,20 +151,20 @@ export function Navbar() {
                     key={link.id}
                     href={link.href}
                     onClick={() => setMobileOpen(false)}
-                    className="text-sm text-white/70 hover:text-white"
+                    className="text-sm text-[#475569] hover:text-[#0f172a]"
                   >
                     {link.label}
                   </a>
                 ))}
                 <SignedOut>
-                  <Link href="/sign-in" className="text-sm font-medium text-white/70">
+                  <Link href="/sign-in" className="text-sm font-medium text-[#475569]">
                     Log In
                   </Link>
                   <Link
                     href="/sign-up"
                     className="rounded-lg bg-gradient-to-r from-[#10b981] to-[#059669] px-4 py-2 text-center text-sm font-semibold text-white"
                   >
-                    Try It Now
+                    Get Started
                   </Link>
                 </SignedOut>
                 <SignedIn>

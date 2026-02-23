@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useCallback } from "react";
-import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { FileText, BookOpen, Presentation, ArrowRight, Sparkles } from "lucide-react";
 
@@ -85,8 +84,8 @@ export function DemoGenerator() {
           <div className="h-3 w-3 rounded-full bg-[#febc2e]" />
           <div className="h-3 w-3 rounded-full bg-[#28c840]" />
         </div>
-        <div className="mx-auto rounded-md bg-white/5 px-12 py-1">
-          <span className="font-mono text-xs text-white/30">
+        <div className="mx-auto rounded-md bg-[#0f172a]/5 px-12 py-1">
+          <span className="font-mono text-xs text-[#475569]/60">
             inquirygen.app/preview
           </span>
         </div>
@@ -96,14 +95,14 @@ export function DemoGenerator() {
       {/* Input row */}
       <div className="flex gap-3">
         <div className="relative flex-1">
-          <Sparkles className="absolute top-1/2 left-3.5 h-4 w-4 -translate-y-1/2 text-white/30" />
+          <Sparkles className="absolute top-1/2 left-3.5 h-4 w-4 -translate-y-1/2 text-[#475569]/40" />
           <input
             type="text"
             value={topic}
             onChange={(e) => setTopic(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && handleGenerate()}
             placeholder="Enter a topic... e.g., Ocean Ecosystems"
-            className="w-full rounded-lg border border-white/10 bg-white/5 py-3 pr-4 pl-10 text-sm text-white placeholder:text-white/30 focus:border-[#10b981]/50 focus:outline-none focus:ring-2 focus:ring-[#10b981]/30"
+            className="w-full rounded-lg border border-[#0f172a]/10 bg-[#0f172a]/[0.03] py-3 pr-4 pl-10 text-sm text-[#0f172a] placeholder:text-[#475569]/40 focus:border-[#10b981]/50 focus:outline-none focus:ring-2 focus:ring-[#10b981]/30"
           />
         </div>
         <button
@@ -117,7 +116,7 @@ export function DemoGenerator() {
 
       {/* Typing output */}
       {(isGenerating || showPreview) && (
-        <div className="terminal-scanline mt-4 rounded-lg border border-white/5 bg-white/[0.02] p-4">
+        <div className="terminal-scanline mt-4 rounded-lg border border-[#0f172a]/5 bg-[#0f172a]/[0.02] p-4">
           <p className="font-mono text-sm text-[#10b981]">
             {typedText}
             {isGenerating && <span className="animate-pulse">|</span>}
@@ -125,7 +124,7 @@ export function DemoGenerator() {
 
           {isGenerating && (
             <>
-              <div className="mt-3 flex gap-4 text-xs text-white/40">
+              <div className="mt-3 flex gap-4 text-xs text-[#475569]/60">
                 {["Analyzing topic", "Mapping standards", "Building materials"].map(
                   (step, i) => (
                     <span
@@ -138,7 +137,7 @@ export function DemoGenerator() {
                         className={`inline-flex h-5 w-5 items-center justify-center rounded-full text-[10px] font-bold ${
                           currentStep > i
                             ? "bg-[#10b981] text-white shadow-[0_0_8px_rgba(16,185,129,0.4)]"
-                            : "bg-white/10 text-white/40"
+                            : "bg-[#0f172a]/10 text-[#475569]/60"
                         }`}
                       >
                         {currentStep > i ? <AnimatedCheck /> : i + 1}
@@ -150,7 +149,7 @@ export function DemoGenerator() {
               </div>
 
               <div className="mt-3">
-                <div className="h-1 overflow-hidden rounded-full bg-white/10">
+                <div className="h-1 overflow-hidden rounded-full bg-[#0f172a]/10">
                   <motion.div
                     className="h-full rounded-full bg-gradient-to-r from-[#10b981] to-[#34d399]"
                     initial={{ width: "0%" }}
@@ -186,8 +185,8 @@ export function DemoGenerator() {
                     <card.icon className="h-4 w-4 text-[#10b981]" />
                   </div>
                   <div>
-                    <h4 className="text-sm font-medium text-white">{card.title}</h4>
-                    <p className="mt-1 text-xs text-white/50">
+                    <h4 className="text-sm font-medium text-[#0f172a]">{card.title}</h4>
+                    <p className="mt-1 text-xs text-[#475569]">
                       {card.description} for &ldquo;{topic}&rdquo;
                     </p>
                   </div>
@@ -197,15 +196,15 @@ export function DemoGenerator() {
 
             <div className="mt-4 rounded-lg border border-[#10b981]/20 bg-[#10b981]/5 p-3 text-center">
               <p className="text-sm text-[#10b981]">
-                Preview Mode &mdash; Sign in to generate your full lesson.
+                Preview Mode &mdash; Subscribe to generate full lessons.
               </p>
-              <Link
-                href="/sign-up"
-                className="mt-2 inline-flex items-center gap-1.5 text-sm font-semibold text-white transition-colors hover:text-[#10b981]"
+              <a
+                href="#pricing"
+                className="mt-2 inline-flex items-center gap-1.5 text-sm font-semibold text-[#0f172a] transition-colors hover:text-[#10b981]"
               >
-                Create Your Free Account{" "}
+                Subscribe to Generate Full Lessons{" "}
                 <ArrowRight className="h-4 w-4" />
-              </Link>
+              </a>
             </div>
           </motion.div>
         )}

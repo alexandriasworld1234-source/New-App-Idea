@@ -8,11 +8,11 @@ import { MagneticButton } from "@/components/motion/MagneticButton";
 
 const ease: [number, number, number, number] = [0.25, 0.1, 0.25, 1];
 
-const freeFeatures = [
-  "2 full unit generations",
-  "Preview all materials in-browser",
-  "Watermarked exports",
-  "Community support",
+const previewFeatures = [
+  "Try the demo generator above",
+  "See sample lesson formats",
+  "No account required",
+  "Read-only preview",
 ];
 
 const paidFeatures = [
@@ -40,7 +40,7 @@ export function Pricing() {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, ease }}
-            className="font-display text-3xl tracking-tight text-white sm:text-4xl"
+            className="font-display text-3xl tracking-tight text-[#0f172a] sm:text-4xl"
           >
             Simple, Transparent Pricing
           </motion.h2>
@@ -48,19 +48,19 @@ export function Pricing() {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2, ease }}
-            className="mt-4 text-lg text-white/50"
+            className="mt-4 text-lg text-[#475569]"
           >
-            Start free. Upgrade when you&apos;re ready.
+            Professional tools, transparent pricing.
           </motion.p>
 
           {/* Toggle */}
-          <div className="mt-8 inline-flex items-center gap-1 rounded-full border border-white/10 bg-white/[0.03] p-1">
+          <div className="mt-8 inline-flex items-center gap-1 rounded-full border border-[#0f172a]/10 bg-[#0f172a]/[0.03] p-1">
             <button
               onClick={() => setAnnual(false)}
               className={`rounded-full px-5 py-2 text-sm font-medium transition-all ${
                 !annual
-                  ? "liquid-glass-tab text-white"
-                  : "text-white/50"
+                  ? "liquid-glass-tab text-[#0f172a]"
+                  : "text-[#475569]"
               }`}
             >
               Monthly
@@ -69,8 +69,8 @@ export function Pricing() {
               onClick={() => setAnnual(true)}
               className={`rounded-full px-5 py-2 text-sm font-medium transition-all ${
                 annual
-                  ? "liquid-glass-tab text-white"
-                  : "text-white/50"
+                  ? "liquid-glass-tab text-[#0f172a]"
+                  : "text-[#475569]"
               }`}
             >
               Annual
@@ -84,34 +84,38 @@ export function Pricing() {
         </div>
 
         <div className="mt-12 grid gap-8 md:grid-cols-2">
-          {/* Free Plan */}
+          {/* Preview Plan */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2, ease }}
             className="liquid-glass p-8"
           >
-            <h3 className="text-lg font-semibold text-white">Free</h3>
+            <h3 className="text-lg font-semibold text-[#0f172a]">Preview</h3>
             <div className="mt-4">
-              <span className="font-display text-5xl text-white">$0</span>
+              <span className="font-display text-5xl text-[#0f172a]">Free</span>
             </div>
-            <p className="mt-2 text-sm text-white/50">
-              Perfect for trying InquiryGen
+            <p className="mt-2 text-sm text-[#475569]">
+              Explore InquiryGen &mdash; no account needed
             </p>
             <ul className="mt-8 space-y-4">
-              {freeFeatures.map((feature) => (
-                <li key={feature} className="flex items-start gap-3 text-sm text-white/70">
-                  <Check className="mt-0.5 h-4 w-4 shrink-0 text-white/40" />
+              {previewFeatures.map((feature) => (
+                <li key={feature} className="flex items-start gap-3 text-sm text-[#475569]">
+                  <Check className="mt-0.5 h-4 w-4 shrink-0 text-[#475569]/50" />
                   {feature}
                 </li>
               ))}
             </ul>
-            <Link
-              href="/sign-up"
-              className="mt-8 block rounded-xl border border-white/15 px-6 py-3 text-center text-sm font-semibold text-white transition-colors hover:bg-white/5"
+            <a
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }}
+              className="mt-8 block rounded-xl border border-[#0f172a]/10 px-6 py-3 text-center text-sm font-semibold text-[#0f172a] transition-colors hover:bg-[#0f172a]/5"
             >
-              Get Started Free
-            </Link>
+              Try Demo Above
+            </a>
           </motion.div>
 
           {/* Pro Plan */}
@@ -125,12 +129,12 @@ export function Pricing() {
             <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-gradient-to-r from-[#10b981] to-[#059669] px-4 py-1 text-xs font-semibold text-white shadow-[0_0_15px_rgba(16,185,129,0.3)]">
               Recommended
             </div>
-            <h3 className="text-lg font-semibold text-white">Pro</h3>
+            <h3 className="text-lg font-semibold text-[#0f172a]">Pro</h3>
             <div className="mt-4 flex items-baseline">
               <AnimatePresence mode="wait">
                 <motion.span
                   key={annual ? "annual" : "monthly"}
-                  className="font-display text-5xl text-white"
+                  className="font-display text-5xl text-[#0f172a]"
                   initial={{ opacity: 0, y: -20, filter: "blur(4px)" }}
                   animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                   exit={{ opacity: 0, y: 20, filter: "blur(4px)" }}
@@ -139,19 +143,19 @@ export function Pricing() {
                   {paidPrice}
                 </motion.span>
               </AnimatePresence>
-              <span className="text-white/50">{paidPeriod}</span>
+              <span className="text-[#475569]">{paidPeriod}</span>
             </div>
             {annual && (
               <p className="mt-1 text-sm font-medium text-[#10b981]">
                 Save $69 vs monthly
               </p>
             )}
-            <p className="mt-2 text-sm text-white/50">
+            <p className="mt-2 text-sm text-[#475569]">
               Everything you need to teach with inquiry
             </p>
             <ul className="mt-8 space-y-4">
               {paidFeatures.map((feature) => (
-                <li key={feature} className="flex items-start gap-3 text-sm text-white/70">
+                <li key={feature} className="flex items-start gap-3 text-sm text-[#475569]">
                   <Check className="mt-0.5 h-4 w-4 shrink-0 text-[#10b981]" />
                   {feature}
                 </li>
@@ -162,13 +166,13 @@ export function Pricing() {
                 href="/sign-up"
                 className="btn-glow block rounded-xl bg-gradient-to-r from-[#10b981] to-[#059669] px-6 py-3 text-center text-sm font-semibold text-white transition-all"
               >
-                Start Free, Upgrade Anytime
+                Start Your Subscription
               </Link>
             </MagneticButton>
           </motion.div>
         </div>
 
-        <div className="mt-8 flex items-center justify-center gap-2 text-sm text-white/40">
+        <div className="mt-8 flex items-center justify-center gap-2 text-sm text-[#475569]/60">
           <Shield className="h-4 w-4" />
           No student data is collected or stored.
         </div>

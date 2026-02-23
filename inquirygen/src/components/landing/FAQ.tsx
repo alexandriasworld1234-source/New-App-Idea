@@ -25,7 +25,7 @@ const faqs = [
   {
     question: "What standards does it support?",
     answer:
-      "InquiryGen supports NGSS, Common Core, individual U.S. state standards, IB (PYP, MYP, DP), UK National Curriculum, Australian Curriculum, and more.",
+      "InquiryGen supports IB (PYP, MYP, DP), UK National Curriculum, Australian Curriculum, NGSS, Common Core, and individual U.S. state standards. Our global standards engine ensures alignment no matter where you teach.",
   },
   {
     question: "Can I customize the outputs?",
@@ -33,9 +33,9 @@ const faqs = [
       "Yes, completely. Every section of every document can be edited in-browser before exporting. You can regenerate individual slides, modify activity prompts, and tailor content to your classroom.",
   },
   {
-    question: "What happens after the free generations?",
+    question: "Is there a free tier?",
     answer:
-      "Your free account includes 2 full unit generations. After that, upgrade to Pro for unlimited generations at $14/month or $99/year. Your generated materials never expire.",
+      "The landing page demo lets you preview how InquiryGen works \u2014 no account required. To generate full lessons and export materials, you\u2019ll need a Pro subscription at $14/month or $99/year.",
   },
 ];
 
@@ -52,7 +52,7 @@ export function FAQ() {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, ease }}
-            className="font-display text-3xl tracking-tight text-white sm:text-4xl"
+            className="font-display text-3xl tracking-tight text-[#0f172a] sm:text-4xl"
           >
             Frequently Asked Questions
           </motion.h2>
@@ -60,7 +60,7 @@ export function FAQ() {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2, ease }}
-            className="mt-4 text-lg text-white/50"
+            className="mt-4 text-lg text-[#475569]"
           >
             Everything you need to know about InquiryGen.
           </motion.p>
@@ -94,7 +94,7 @@ export function FAQ() {
                   className="flex w-full items-center justify-between px-6 py-5 text-left"
                   aria-expanded={isOpen}
                 >
-                  <span className="text-base font-semibold text-white">
+                  <span className="text-base font-semibold text-[#0f172a]">
                     {faq.question}
                   </span>
                   <motion.div
@@ -103,7 +103,7 @@ export function FAQ() {
                   >
                     <ChevronDown
                       className={`h-5 w-5 shrink-0 transition-colors duration-200 ${
-                        isOpen ? "text-[#10b981]" : "text-white/40"
+                        isOpen ? "text-[#10b981]" : "text-[#475569]/50"
                       }`}
                     />
                   </motion.div>
@@ -121,7 +121,7 @@ export function FAQ() {
                       className="overflow-hidden"
                       role="region"
                     >
-                      <p className="px-6 pb-5 text-sm leading-relaxed text-white/50">
+                      <p className="px-6 pb-5 text-sm leading-relaxed text-[#475569]">
                         {faq.answer}
                       </p>
                     </motion.div>
