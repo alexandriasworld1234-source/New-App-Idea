@@ -6,14 +6,19 @@ export async function checkAndReserveCredits(
   userId: string,
   estimatedCredits: number
 ): Promise<{ allowed: boolean; balance: number; reserved: number }> {
-  // Fetch current balance
+  // Fetch current balance and role
   const user = await db.query.users.findFirst({
     where: eq(users.id, userId),
-    columns: { creditBalance: true },
+    columns: { creditBalance: true, role: true },
   });
 
   if (!user) {
     return { allowed: false, balance: 0, reserved: 0 };
+  }
+
+  // Admin users bypass credit checks entirely
+  if (user.role === "admin") {
+    return { allowed: true, balance: user.creditBalance, reserved: 0 };
   }
 
   if (user.creditBalance < estimatedCredits) {
