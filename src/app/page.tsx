@@ -8,7 +8,7 @@ import { Footer } from "@/components/landing/Footer";
 
 export default function LandingPage() {
   return (
-    <div className="atmosphere min-h-screen scroll-smooth">
+    <div className="grain">
       <Navbar />
       <Hero />
       <TabbedShowcase />
