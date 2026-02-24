@@ -72,8 +72,9 @@ export function Hero() {
           {...stagger(0.2)}
           className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-muted"
         >
-          Generate complete, standards-aligned inquiry units &mdash; teacher
-          guides, student materials, and presentations &mdash; in minutes.
+          The future of teaching isn&apos;t about working harder &mdash;
+          it&apos;s about working smarter. Generate complete inquiry units in
+          minutes, so you can focus on what actually matters.
         </motion.p>
 
         {/* CTAs */}
