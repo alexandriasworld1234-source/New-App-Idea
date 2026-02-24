@@ -2,200 +2,176 @@
 
 import { motion } from "framer-motion";
 import {
+  Wand2,
+  Layers,
+  Download,
   BookOpen,
   FileText,
   Presentation,
   Target,
   ClipboardCheck,
-  Lightbulb,
+  BookMarked,
 } from "lucide-react";
 
-/* ─── Animation helpers ─── */
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0 },
-};
-
-const viewportConfig = { once: true, margin: "-80px" as const };
-
-/* ─── Step data ─── */
+const ease: [number, number, number, number] = [0.25, 0.1, 0.25, 1];
 
 const steps = [
   {
-    number: "01",
-    title: "Describe your vision",
-    text: "Enter your topic, grade level, and preferred inquiry model. Select standards or let AI find the best fit.",
+    num: "01",
+    title: "Describe your unit",
+    description:
+      "Enter your topic, grade level, and preferred inquiry model. InquiryGen understands your curriculum context.",
+    icon: Wand2,
   },
   {
-    number: "02",
-    title: "AI builds everything",
-    text: "Our AI generates a complete unit: teacher guide, student activity pack, and presentation slides — all framework-aligned.",
+    num: "02",
+    title: "AI generates everything",
+    description:
+      "In under two minutes, receive a complete teacher guide, student activity pack, and slide deck — all standards-aligned.",
+    icon: Layers,
   },
   {
-    number: "03",
-    title: "Review and teach",
-    text: "Edit anything inline, export to Word and PowerPoint, and walk into class prepared. Every unit is yours to customize.",
+    num: "03",
+    title: "Download & teach",
+    description:
+      "Export as Word and PowerPoint files. Edit freely. Every resource is yours to customize and use immediately.",
+    icon: Download,
   },
 ];
 
-/* ─── Card data ─── */
-
-const cards = [
+const features = [
   {
     icon: BookOpen,
     title: "Teacher Guide",
     description:
-      "Complete facilitation guide with framework phases, timing, differentiation strategies, and answer keys.",
+      "Complete facilitation guide with answer keys, differentiation strategies, and LEVER framework alignment.",
   },
   {
     icon: FileText,
-    title: "Student Activity Pack",
+    title: "Student Pack",
     description:
-      "Investigations, worksheets, rubrics, and reflection activities — all scaffolded by grade level.",
+      "Pre-assessment, rubrics, model sketches, simulation observations, research activities, and STEM challenges.",
   },
   {
     icon: Presentation,
     title: "Slide Deck",
     description:
-      "9-slide presentation with speaker notes, ready to project. Clean, branded, student-friendly.",
+      "9-slide branded presentation ready to project, with speaker notes and visual scaffolds.",
   },
   {
     icon: Target,
-    title: "Standards Alignment",
+    title: "Standards Aligned",
     description:
-      "Auto-mapped to NGSS, IB, Common Core, or your custom framework with explicit connections.",
+      "Automatically mapped to NGSS, state standards, and cross-cutting concepts with full unpacking.",
   },
   {
     icon: ClipboardCheck,
     title: "Assessment Tools",
     description:
-      "Pre and post assessments, rubrics, and success criteria aligned to learning objectives.",
+      "Built-in pre/post assessments, rubrics, and formative check-ins aligned to learning objectives.",
   },
   {
-    icon: Lightbulb,
+    icon: BookMarked,
     title: "Vocabulary & Resources",
     description:
-      "Key terms with definitions, background reading, and extension resources for deeper learning.",
+      "Curated key terms, background reading, and extension resources for deeper exploration.",
   },
 ];
-
-/* ─── Main Component ─── */
 
 export function TabbedShowcase() {
   return (
     <>
-      {/* ── SECTION A: How It Works ── */}
-      <section id="features" className="bg-paper py-28 sm:py-36">
-        <div className="mx-auto max-w-6xl px-6">
-          {/* Overline */}
-          <motion.p
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={viewportConfig}
-            transition={{ duration: 0.6 }}
-            className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-accent"
+      {/* ─── HOW IT WORKS ─── */}
+      <section id="features" className="relative px-6 py-32">
+        <div className="mx-auto max-w-5xl">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6, ease }}
+            className="text-center"
           >
-            How it works
-          </motion.p>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">
+              Simple Process
+            </p>
+            <h2 className="mt-4 font-display text-4xl font-light tracking-tight text-prose sm:text-5xl">
+              How it works
+            </h2>
+          </motion.div>
 
-          {/* Headline */}
-          <motion.h2
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={viewportConfig}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="mt-4 text-center font-display text-4xl font-light tracking-tight text-ink sm:text-5xl lg:text-6xl"
-          >
-            Three steps to a complete unit.
-          </motion.h2>
-
-          {/* Steps grid */}
-          <div className="mt-20 grid grid-cols-1 gap-12 md:grid-cols-3">
+          <div className="mt-20 grid gap-8 md:grid-cols-3">
             {steps.map((step, i) => (
               <motion.div
-                key={step.number}
-                variants={fadeUp}
-                initial="hidden"
-                whileInView="visible"
-                viewport={viewportConfig}
-                transition={{ duration: 0.6, delay: 0.15 * i }}
+                key={step.num}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.6, delay: i * 0.15, ease }}
+                className="group relative"
               >
-                <p className="font-display text-6xl font-light text-accent">
-                  {step.number}
-                </p>
-                <h3 className="mt-4 text-xl font-semibold text-ink">
-                  {step.title}
-                </h3>
-                <p className="mt-3 leading-relaxed text-muted">
-                  {step.text}
-                </p>
+                <span className="font-display text-7xl font-light text-accent/15 transition-colors duration-500 group-hover:text-accent/30">
+                  {step.num}
+                </span>
+                <div className="mt-4">
+                  <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-accent/10 text-accent transition-colors duration-300 group-hover:bg-accent/15">
+                    <step.icon className="h-5 w-5" />
+                  </div>
+                  <h3 className="font-display text-xl font-medium text-prose">
+                    {step.title}
+                  </h3>
+                  <p className="mt-3 text-sm leading-relaxed text-muted">
+                    {step.description}
+                  </p>
+                </div>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ── SECTION B: Everything You Need ── */}
-      <section className="bg-dark py-28 text-paper sm:py-36">
-        <div className="mx-auto max-w-6xl px-6">
-          {/* Overline */}
-          <motion.p
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={viewportConfig}
-            transition={{ duration: 0.6 }}
-            className="text-center text-xs font-semibold uppercase tracking-[0.2em] text-accent"
-          >
-            What you get
-          </motion.p>
+      {/* ─── EVERYTHING YOU NEED ─── */}
+      <section className="relative border-y border-edge px-6 py-32">
+        {/* Subtle surface tint */}
+        <div className="pointer-events-none absolute inset-0 bg-surface/40" />
 
-          {/* Headline */}
-          <motion.h2
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={viewportConfig}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="mt-4 text-center font-display text-4xl font-light tracking-tight text-paper sm:text-5xl lg:text-6xl"
+        <div className="relative mx-auto max-w-5xl">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6, ease }}
+            className="text-center"
           >
-            Everything you need, generated in minutes.
-          </motion.h2>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">
+              Complete Package
+            </p>
+            <h2 className="mt-4 font-display text-4xl font-light tracking-tight text-prose sm:text-5xl">
+              Everything you need
+            </h2>
+            <p className="mx-auto mt-4 max-w-xl text-muted">
+              Every unit includes three publication-ready documents,
+              automatically aligned to your chosen standards framework.
+            </p>
+          </motion.div>
 
-          {/* Subtext */}
-          <motion.p
-            variants={fadeUp}
-            initial="hidden"
-            whileInView="visible"
-            viewport={viewportConfig}
-            transition={{ duration: 0.6, delay: 0.15 }}
-            className="mt-4 text-center text-lg text-dark-muted"
-          >
-            Each unit includes research-backed materials ready for your
-            classroom.
-          </motion.p>
-
-          {/* Cards grid */}
-          <div className="mt-16 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {cards.map((card, i) => (
+          <div className="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {features.map((feature, i) => (
               <motion.div
-                key={card.title}
-                variants={fadeUp}
-                initial="hidden"
-                whileInView="visible"
-                viewport={viewportConfig}
-                transition={{ duration: 0.5, delay: 0.1 * i }}
-                className="rounded-2xl border border-dark-border bg-dark-surface p-8 transition-all hover:-translate-y-1 hover:border-accent/30"
+                key={feature.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-30px" }}
+                transition={{ duration: 0.5, delay: i * 0.08, ease }}
+                className="group rounded-2xl border border-edge-soft bg-raised/40 p-6 transition-all duration-500 hover:border-accent/20 hover:bg-raised/80"
               >
-                <card.icon className="h-8 w-8 text-accent" />
-                <h3 className="mt-5 text-lg font-semibold text-paper">
-                  {card.title}
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-accent/10 text-accent transition-colors duration-300 group-hover:bg-accent/15">
+                  <feature.icon className="h-5 w-5" />
+                </div>
+                <h3 className="mt-4 font-display text-base font-medium text-prose">
+                  {feature.title}
                 </h3>
-                <p className="mt-2 text-sm leading-relaxed text-dark-muted">
-                  {card.description}
+                <p className="mt-2 text-sm leading-relaxed text-muted">
+                  {feature.description}
                 </p>
               </motion.div>
             ))}

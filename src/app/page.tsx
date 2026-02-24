@@ -8,13 +8,15 @@ import { Footer } from "@/components/landing/Footer";
 
 export default function LandingPage() {
   return (
-    <div className="grain">
+    <div className="atmosphere grain">
       <Navbar />
-      <Hero />
-      <TabbedShowcase />
-      <OurStory />
-      <Pricing />
-      <FAQ />
+      <main className="relative z-[1]">
+        <Hero />
+        <TabbedShowcase />
+        <OurStory />
+        <Pricing />
+        <FAQ />
+      </main>
       <Footer />
     </div>
   );

@@ -3,12 +3,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 
-const fadeUp = {
-  initial: { opacity: 0, y: 24 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: "-80px" as const },
-  transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] as const },
-};
+const ease: [number, number, number, number] = [0.25, 0.1, 0.25, 1];
 
 const footerLinks = [
   { href: "#features", label: "Features" },
@@ -20,61 +15,53 @@ const footerLinks = [
 
 export function Footer() {
   return (
-    <footer>
+    <footer className="relative z-[1] border-t border-edge">
       {/* Final CTA */}
-      <section className="bg-dark py-28 sm:py-36">
-        <div className="mx-auto max-w-3xl px-6 text-center">
-          <motion.h2
-            {...fadeUp}
-            className="font-display text-4xl font-light tracking-tight text-paper sm:text-5xl lg:text-6xl"
-          >
-            Ready to transform your planning?
-          </motion.h2>
+      <div className="relative px-6 py-32">
+        {/* Subtle gradient wash */}
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-accent/[0.02] to-transparent" />
 
-          <motion.p
-            {...fadeUp}
-            transition={{ ...fadeUp.transition, delay: 0.1 }}
-            className="mt-6 text-lg text-dark-muted"
-          >
-            Join hundreds of educators generating better lessons in less time.
-          </motion.p>
-
-          <motion.div
-            {...fadeUp}
-            transition={{ ...fadeUp.transition, delay: 0.2 }}
-            className="mt-10"
-          >
-            <a
-              href="#"
-              className="inline-flex items-center gap-2 rounded-full bg-accent px-8 py-4 text-sm font-semibold text-ink transition-opacity duration-200 hover:opacity-90"
-            >
-              Start creating free
-              <ArrowRight className="h-4 w-4" />
-            </a>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Bottom bar */}
-      <div className="border-t border-dark-border bg-dark">
-        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-6 py-8 sm:flex-row">
-          {/* Copyright */}
-          <p className="text-xs text-dark-muted">
-            &copy; 2026 InquiryGen
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.6, ease }}
+          className="relative mx-auto max-w-2xl text-center"
+        >
+          <h2 className="font-display text-3xl font-light tracking-tight text-prose sm:text-4xl">
+            Ready to transform{" "}
+            <span className="italic text-accent">your planning?</span>
+          </h2>
+          <p className="mt-4 text-muted">
+            Join hundreds of educators saving hours every week.
           </p>
+          <a
+            href="#pricing"
+            className="group mt-8 inline-flex items-center gap-2 rounded-full bg-accent px-8 py-4 text-sm font-semibold text-canvas transition-all duration-300 hover:brightness-110 hover:shadow-[0_0_30px_rgba(52,211,153,0.25)]"
+          >
+            Start creating free
+            <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
+          </a>
+        </motion.div>
+      </div>
 
-          {/* Links */}
-          <nav className="flex flex-wrap items-center gap-6">
+      {/* Footer bar */}
+      <div className="border-t border-edge-soft px-6 py-6">
+        <div className="mx-auto flex max-w-5xl flex-col items-center justify-between gap-4 sm:flex-row">
+          <p className="text-xs text-faint">
+            &copy; {new Date().getFullYear()} InquiryGen. All rights reserved.
+          </p>
+          <div className="flex flex-wrap items-center gap-6">
             {footerLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
-                className="text-xs text-dark-muted transition-colors duration-200 hover:text-paper"
+                className="text-xs text-faint transition-colors duration-200 hover:text-muted"
               >
                 {link.label}
               </a>
             ))}
-          </nav>
+          </div>
         </div>
       </div>
     </footer>
