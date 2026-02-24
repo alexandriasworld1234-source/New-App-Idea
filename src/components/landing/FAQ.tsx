@@ -13,11 +13,11 @@ const faqs = [
   },
   {
     q: "How does InquiryGen ensure quality?",
-    a: "Our AI is trained on pedagogy-first principles and cross-referenced against published inquiry frameworks including 5E, Anchoring Phenomena, and Project-Based Learning. Every output is structured by experienced educators' design patterns, not generic templates.",
+    a: "Our AI is grounded in the world's leading inquiry-based pedagogies — from Finland's Phenomenon-Based Learning to Education 4.0 competency frameworks — and cross-referenced against our own LEVER framework. Every output is structured by experienced educators' design patterns, not generic templates.",
   },
   {
     q: "Which inquiry models are supported?",
-    a: "We currently support the 5E Instructional Model, Anchoring Phenomena, Argument-Driven Inquiry, Modeling-Based Inquiry, and Project-Based Learning — with more frameworks being added based on educator feedback.",
+    a: "Our flagship is the LEVER Framework — designed to eventually supersede traditional models in science education. We also support Phenomenon-Based Learning, Anchoring Phenomena, Argument-Driven Inquiry, Modeling-Based Inquiry, Project-Based Learning, and the 5E model. New frameworks are continuously added based on global research and educator feedback.",
   },
   {
     q: "What standards frameworks can I align to?",

@@ -16,7 +16,7 @@ const pillars = [
     icon: Globe,
     title: "Global Perspective",
     description:
-      "50+ curriculum frameworks from 12 countries inform our AI, ensuring culturally responsive and standards-aligned outputs.",
+      "Informed by Finland's Phenomenon-Based Learning, Education 4.0 principles, Singapore's inquiry methods, and 50+ frameworks from 12 countries — not a single model, but the best of all of them.",
   },
   {
     icon: Compass,

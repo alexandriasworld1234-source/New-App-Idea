@@ -126,7 +126,7 @@ export function Hero() {
                   Photosynthesis &amp; Energy Transfer
                 </h3>
                 <div className="flex flex-wrap gap-2">
-                  {["Grade 7", "5E Model", "NGSS"].map((tag) => (
+                  {["Grade 7", "LEVER", "NGSS"].map((tag) => (
                     <span
                       key={tag}
                       className="rounded-full bg-accent/10 px-2.5 py-0.5 text-xs font-medium text-accent"
