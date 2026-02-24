@@ -52,7 +52,7 @@ export function TheShift() {
           </h2>
           <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-muted">
             The world&apos;s top education systems — from Finland to Singapore
-            to the IB — have already made the shift to inquiry-driven learning.
+            to IB — have already made the shift to inquiry-driven learning.
             InquiryGen is built on lessons drawn from these global leaders,
             bringing world-class pedagogical thinking into every unit we
             generate.
