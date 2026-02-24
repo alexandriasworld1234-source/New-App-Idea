@@ -4,6 +4,7 @@ import { db } from "@/db";
 import { generations } from "@/db/schema";
 import { checkAndReserveCredits, reconcileCredits } from "@/lib/credits/guard";
 import { estimateGenerationCredits } from "@/lib/credits/calculator";
+import { ensureUser } from "@/lib/auth/ensure-user";
 import {
   runGenerationPipeline,
   type GenerationInput,
@@ -31,6 +32,12 @@ export async function POST(request: Request) {
   const { userId } = await auth();
   if (!userId) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  // Auto-create DB user from Clerk if not exists
+  const dbUser = await ensureUser(userId);
+  if (!dbUser) {
+    return NextResponse.json({ error: "Could not resolve user" }, { status: 500 });
   }
 
   // Parse and validate request
@@ -95,8 +102,8 @@ export async function POST(request: Request) {
       standardsFramework: data.standardsFramework as any,
       selectedStandardIds: [],
       additionalContext: data.additionalContext,
-      aiProvider: "anthropic",
-      aiModel: "claude-sonnet-4-5-20250514",
+      aiProvider: "openrouter",
+      aiModel: "anthropic/claude-sonnet-4-5",
     })
     .returning();
 

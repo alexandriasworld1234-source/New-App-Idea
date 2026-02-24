@@ -1,9 +1,13 @@
 import { auth } from "@clerk/nextjs/server";
-import { Sparkles, FolderOpen, Coins } from "lucide-react";
+import { Sparkles, FolderOpen, Coins, Shield } from "lucide-react";
 import Link from "next/link";
+import { ensureUser } from "@/lib/auth/ensure-user";
 
 export default async function DashboardPage() {
   const { userId } = await auth();
+  const dbUser = userId ? await ensureUser(userId) : null;
+  const isAdmin = dbUser?.role === "admin";
+  const credits = dbUser?.creditBalance ?? 0;
 
   return (
     <div className="space-y-8">
@@ -24,7 +28,9 @@ export default async function DashboardPage() {
             </div>
             <div>
               <p className="text-sm text-muted-foreground">Credits</p>
-              <p className="text-2xl font-bold">50</p>
+              <p className="text-2xl font-bold">
+                {isAdmin ? "Unlimited" : credits.toLocaleString()}
+              </p>
             </div>
           </div>
         </div>
@@ -44,11 +50,15 @@ export default async function DashboardPage() {
         <div className="rounded-xl border border-border bg-card p-6 transition-all hover:border-[#10b981]/20 hover:shadow-[0_0_20px_rgba(16,185,129,0.06)]">
           <div className="flex items-center gap-3">
             <div className="rounded-lg bg-[#10b981]/10 p-2">
-              <Sparkles className="h-5 w-5 text-[#10b981]" />
+              {isAdmin ? (
+                <Shield className="h-5 w-5 text-[#10b981]" />
+              ) : (
+                <Sparkles className="h-5 w-5 text-[#10b981]" />
+              )}
             </div>
             <div>
               <p className="text-sm text-muted-foreground">Plan</p>
-              <p className="text-2xl font-bold">Free</p>
+              <p className="text-2xl font-bold">{isAdmin ? "Admin" : "Free"}</p>
             </div>
           </div>
         </div>
